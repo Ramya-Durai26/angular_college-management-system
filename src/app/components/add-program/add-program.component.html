@@ -1,20 +1,29 @@
-<div class="form-card">
-  <h3>➕ Add New Program</h3>
-  
-  <div class="form-group">
-    <label>Program Name</label>
-    <input type="text" [(ngModel)]="newProgramName" placeholder="e.g. Data Science">
-  </div>
+<div class="form-container">
+  <div class="form-card">
+    <h2>{{ isEditMode ? '✏️ Edit Program' : '➕ Add New Program' }}</h2>
+    <p>Fill in the details below to create a new academic program.</p>
 
-  <div class="form-group">
-    <label>Description</label>
-    <input type="text" [(ngModel)]="newProgramDescription" placeholder="e.g. A program in Data Science">
-  </div>
     <div class="form-group">
-    <label>Duration</label>
-    <input type="text" [(ngModel)]="newProgramDuration" placeholder="e.g. 4 Years">
+      <label>Program Name</label>
+      <input type="text" [(ngModel)]="newProgramName" placeholder="e.g. Data Science">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea [(ngModel)]="newProgramDescription" placeholder="e.g. A comprehensive study of data analysis and machine learning" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Default Status</label>
+      <select>
+        <option>Active</option>
+        <option>Inactive</option>
+      </select>
+    </div>
+
+    <div class="button-group">
+      <a routerLink="/programs" class="btn-cancel">Cancel</a>
+      <button class="btn-save" (click)="saveProgram()">Save Program</button>
+    </div>
   </div>
-<div class="form-card">
-    <button class="submit-btn" (click)="saveProgram()">Save Program</button>
-<a routerLink="/programs" class="cancel-link">Cancel and go back</a>
 </div>

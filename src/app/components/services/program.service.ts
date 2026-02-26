@@ -6,12 +6,10 @@ export class ProgramService {
   // Using Signals (Angular 2026 Best Practice) for reactive data
   private programsList = signal<Program[]>([
     {
-      id: 1, name: 'Computer Science', description: 'B.Tech in CS', status: 'Active',
-      duration: ''
+      id: 1, name: 'Computer Science', description: 'B.Tech in CS', status: 'Active'
     },
     {
-      id: 2, name: 'Mechanical Engineering', description: 'B.Tech in ME', status: 'Active',
-      duration: ''
+      id: 2, name: 'Mechanical Engineering', description: 'B.Tech in ME', status: 'Active'
     }
   ]);
 
@@ -29,6 +27,10 @@ addProgram(newProgram: Program) {
 
   deleteProgram(id: number) {
     this.programsList.update(list => list.filter(p => p.id !== id));
+  }
+    getProgramById(id: number) {
+    // Finds the program in your list that matches the ID from the URL
+    return this.programsList().find(p => p.id === id);
   }
   
 }

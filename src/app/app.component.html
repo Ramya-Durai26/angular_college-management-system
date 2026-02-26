@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <a routerLink="/" class="nav-brand">
+    🎓 <span>College Management System</span>
+  </a>
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active">Home</a>
+    <a routerLink="/programs" onclick="console.log('I was clicked!')">Programs</a>
+    <a routerLink="/add-program" routerLinkActive="active">Add New Program</a>
+    <a routerLink="/students" routerLinkActive="active">Students</a>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  &copy; 2026 College Management System | Built with Angular
+</footer>

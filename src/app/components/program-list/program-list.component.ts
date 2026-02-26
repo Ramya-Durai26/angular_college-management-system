@@ -20,10 +20,10 @@ export class ProgramListComponent {
   isEditing = signal(false);
 
   // Form Model
-  currentProgram: Program = { id: 0, name: '', description: '', duration:'', status: 'Active' };
+  currentProgram: Program = { id: 0, name: '', description: '',status: 'Active' };
 
   openAddForm() {
-    this.currentProgram = { id: 0, name: '', description: '', duration:'', status: 'Active' };
+    this.currentProgram = { id: 0, name: '', description: '', status: 'Active' };
     this.isEditing.set(false);
     this.showForm.set(true);
   }
