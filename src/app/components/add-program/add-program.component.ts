@@ -19,6 +19,7 @@ export class AddProgramComponent implements OnInit {
   newProgramName = '';
   newProgramDescription = '';
   newProgramDuration = '';
+  newStatus: "Active" | "Inactive" = 'Active';
 
   constructor(
     private route: ActivatedRoute,
@@ -29,11 +30,16 @@ export class AddProgramComponent implements OnInit {
   ngOnInit() {
     // 1. Get the ID from the URL
     const idParam = this.route.snapshot.paramMap.get('id');
+    const statusParam = this.route.snapshot.paramMap.get('status');
     
     if (idParam) {
       this.isEditMode = true;
       this.editId = Number(idParam);
       
+      // 2. Set the status if it's available in URL
+      if (statusParam === 'Active' || statusParam === 'Inactive') {
+        this.newStatus = statusParam as "Active" | "Inactive";
+      }
       // 2. Ask the service for the data
       const existingProgram = this.programService.getProgramById(this.editId);
       
@@ -47,17 +53,27 @@ export class AddProgramComponent implements OnInit {
 
 
   saveProgram() {
-    if (this.newProgramName && this.newProgramDuration) {
-      
-     this.programService.addProgram({
-        id: Date.now(), // Simple way to generate a unique ID
-        name: this.newProgramName,
-       description: this.newProgramDescription, 
+  console.log('Save button clicked!');
+  
+  if (this.isEditMode && this.editId !== null) {
+    // Update existing
+    this.programService.updateProgram({
+      id: this.editId,
+      name: this.newProgramName,
+      description: this.newProgramDescription, 
+      status: this.newStatus
+    }); 
+  } else {
+    // Add new
+    this.programService.addProgram({
+      id: Date.now(),
+      name: this.newProgramName,
+      description: this.newProgramDescription, 
       status: 'Active'
-     }); 
+    }); 
+  }
 
-      // 4. Navigate back to the list automatically
-      this.router.navigate(['/programs']);
-    }
+  // 4. MOVE THIS HERE (Outside the brackets)
+  this.router.navigate(['/programs']);
   }
 }
