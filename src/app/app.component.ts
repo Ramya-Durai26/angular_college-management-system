@@ -5,14 +5,8 @@ import { RouterModule } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive], 
-template: `
-    <nav>
-      <a routerLink="/" routerLinkActive="active">Home</a> | 
-      <a routerLink="/programs" routerLinkActive="active">Programs</a>
-    </nav>
-    <hr>
-    <router-outlet></router-outlet>
-  `
+  templateUrl: './app.component.html', 
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'CMS';
