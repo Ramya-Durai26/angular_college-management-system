@@ -18,7 +18,6 @@ export class AddProgramComponent implements OnInit {
 
   newProgramName = '';
   newProgramDescription = '';
-  newProgramDuration = '';
   newStatus: "Active" | "Inactive" = 'Active';
 
   constructor(
@@ -30,16 +29,11 @@ export class AddProgramComponent implements OnInit {
   ngOnInit() {
     // 1. Get the ID from the URL
     const idParam = this.route.snapshot.paramMap.get('id');
-    const statusParam = this.route.snapshot.paramMap.get('status');
     
     if (idParam) {
       this.isEditMode = true;
       this.editId = Number(idParam);
       
-      // 2. Set the status if it's available in URL
-      if (statusParam === 'Active' || statusParam === 'Inactive') {
-        this.newStatus = statusParam as "Active" | "Inactive";
-      }
       // 2. Ask the service for the data
       const existingProgram = this.programService.getProgramById(this.editId);
       
@@ -47,6 +41,7 @@ export class AddProgramComponent implements OnInit {
       if (existingProgram) {
         this.newProgramName = existingProgram.name;
         this.newProgramDescription = existingProgram.description;
+        this
       }
     }
   }
