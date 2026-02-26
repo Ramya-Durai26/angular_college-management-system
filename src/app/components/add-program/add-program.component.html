@@ -1,0 +1,16 @@
+<div class="form-card">
+  <h3>➕ Add New Program</h3>
+  
+  <div class="form-group">
+    <label>Program Name</label>
+    <input type="text" [(ngModel)]="newProgramName" placeholder="e.g. Data Science">
+  </div>
+
+  <div class="form-group">
+    <label>Duration</label>
+    <input type="text" [(ngModel)]="newProgramDuration" placeholder="e.g. 4 Years">
+  </div>
+<div class="form-card">
+    <button class="submit-btn" (click)="saveProgram()">Save Program</button>
+<a routerLink="/programs" class="cancel-link">Cancel and go back</a>
+</div>

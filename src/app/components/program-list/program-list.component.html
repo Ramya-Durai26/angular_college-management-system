@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>College Programs</h2>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+  <h2>Academic Programs</h2>
+  
+  <button class="btn-primary" routerLink="/add-program" style="margin-left:auto;">
+    + Add New Program
+  </button>
+</div>
+
+  <div *ngIf="showForm()" class="form-card">
+    <h3>{{ isEditing() ? 'Edit' : 'Add' }} Program</h3>
+    <input [(ngModel)]="currentProgram.name" placeholder="Name">
+    <textarea [(ngModel)]="currentProgram.description" placeholder="Description"></textarea>
+    <select [(ngModel)]="currentProgram.status">
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+    </select>
+    <button (click)="saveProgram()">Save</button>
+    <button (click)="showForm.set(false)">Cancel</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of programs()">
+        <td>{{ p.name }}</td>
+        <td>{{ p.description }}</td>
+        <td>{{ p.status }}</td>
+        <td>
+          <button (click)="editProgram(p)">Edit</button>
+          <button (click)="deleteProgram(p.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
