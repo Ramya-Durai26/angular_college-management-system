@@ -16,15 +16,18 @@ export class AddProgramComponent {
 
   newProgramName = '';
   newProgramDuration = '';
+  newProgramDescription='';
 
   saveProgram() {
     if (this.newProgramName && this.newProgramDuration) {
-      // 3. Add to your service
- //     this.programService.addProgram({
- //       id: Date.now(), // Simple way to generate an ID
-  //      name: this.newProgramName,
- //       duration: this.newProgramDuration
- //     }); 
+      
+     this.programService.addProgram({
+        id: Date.now(), // Simple way to generate a unique ID
+        name: this.newProgramName,
+       duration: this.newProgramDuration,
+       description: this.newProgramDescription, 
+      status: 'Active'
+     }); 
 
       // 4. Navigate back to the list automatically
       this.router.navigate(['/programs']);
